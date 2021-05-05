@@ -38,7 +38,7 @@ These are scaffolded pages for CRUD operations for Item data.
 These are scaffolded pages for CRUD operations for Location data.
 
 ### Areas / api / *
-These are controllers for the WebAPI access to the data
+These are controllers for the WebAPI access to the data. More info about the API [here](https://github.com/kellivan/ItemEyes/tree/main/ItemEyes/Areas/api).
 
 ## Future
 Plans for this project include adding more documentation so it better serves as a sample project.
