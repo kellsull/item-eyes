@@ -8,7 +8,7 @@ ASP.NET Core project for inventory management
 This is a simple ASP.NET project created following Microsoft Documentaion site
 for ASP.NET Core.
 
-The project started as a Web API and has now been expanded to include MVC.
+The project started as a Web API and has been expanded to include MVC.
 ASP.NET allows for both to coexist, but ideally they should be seperately hosted.
 They're grouped together in this project for convience and demonstration.
 It was accomplished by utilizing the Areas folder for MVC and updating the Startup
