@@ -31,11 +31,11 @@ This is a group of items as well as contact info for their place of storage.
 ### Index
 This is the landing page for the project.
 
-### Items / CRUD
-These are scaffolded pages for Create, Read, Update and Delete for Item data.
+### Items / (Details, Create, Edit, Delete)
+These are scaffolded pages for CRUD operations for Item data.
 
-### Locations / CRUD
-These are scaffolded pages for Create, Read, Update and Delete for Location data.
+### Locations / (Details, Create, Edit, Delete)
+These are scaffolded pages for CRUD operations for Location data.
 
 ### Areas / api / *
 These are controllers for the WebAPI access to the data
