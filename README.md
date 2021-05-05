@@ -11,31 +11,33 @@ for ASP.NET Core.
 The project started as a just Web API and has now been morphed to include MVC.
 ASP.NET allows for both to coexist, but ideally they should be seperately hosted.
 They're grouped together in this project for convience and demonstration.
+It was accomplished by uttilizing the Areas folder for MVC and updating the Startup
+configuration.
 
 ## Models
 
-### Item
+#### Item
 Items represent anything regsitered into inventory of the same kind at the same time.
 There were ways of splitting data into seperate entities, but as a simple solution,
 this one model represents goods, their receipt, and stored location.
 
-### Location
+#### Location
 Locations represnt a place of storage and its contained items.
 This is a group of items as well as contact info for their place of storage.
 
 
 ## Controllers/Views
 
-### Home / Index
+#### Index
 This is the landing page for the project.
 
-### Items / CRUD
+#### Items / CRUD
 These are scaffolded pages for Create, Read, Update and Delete for Item data.
 
-### Locations / CRUD
+#### Locations / CRUD
 These are scaffolded pages for Create, Read, Update and Delete for Location data.
 
-### Areas / api / *
+#### Areas / api / *
 These are controllers for the WebAPI access to the data
 
 ## Future
