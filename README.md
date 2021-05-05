@@ -11,7 +11,7 @@ for ASP.NET Core.
 The project started as a just Web API and has now been morphed to include MVC.
 ASP.NET allows for both to coexist, but ideally they should be seperately hosted.
 They're grouped together in this project for convience and demonstration.
-It was accomplished by uttilizing the Areas folder for MVC and updating the Startup
+It was accomplished by utilizing the Areas folder for MVC and updating the Startup
 configuration.
 
 ## Models
