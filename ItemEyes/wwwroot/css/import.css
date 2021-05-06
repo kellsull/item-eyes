@@ -1,7 +1,13 @@
-
-
-body {
+body{
     background-color: aliceblue;
+}
+
+header {
+    height: 60px;
+}
+
+main, body, main, main > div {
+    min-height: calc(100vh - 180px);
 }
 
 @media (min-width: 991.98px) {
