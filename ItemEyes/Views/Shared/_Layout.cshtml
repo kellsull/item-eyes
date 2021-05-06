@@ -6,21 +6,29 @@
     <title>@ViewData["Title"] - ItemEyes</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/import.css" />
+    <style>
+        .sidebar-link{
+            margin: 1rem;
+        }
+    </style>
 </head>
 <body>
     <header>
         <nav id="sidebar" class="d-lg-block sidebar collapse navbar-collapse bg-white">
-            <nav class="flex-column nav position-sticky">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
+            <nav class="position-sticky">
+                <a class="nav-link sidebar-link btn btn-outline-primary" asp-area="" asp-controller="Home" asp-action="Index">
                     <span>Home</span>
                 </a>
-                <a class="nav-link text-dark" asp-area="" asp-controller="Items" asp-action="Index">
+                <a class="nav-link sidebar-link btn btn-outline-primary" asp-area="" asp-controller="Items" asp-action="Index">
                     <span>Items</span>
                 </a>
-                <a class="nav-link text-dark" asp-area="" asp-controller="Locations" asp-action="Index">
+                <a class="nav-link sidebar-link btn btn-outline-primary" asp-area="" asp-controller="Locations" asp-action="Index">
                     <span>Locations</span>
                 </a>
-                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">
+                <a class="nav-link sidebar-link btn btn-outline-primary" href="/api">
+                    <span>API</span>
+                </a>
+                <a class="nav-link sidebar-link btn btn-outline-primary" asp-area="" asp-controller="Home" asp-action="Privacy">
                     <span>Privacy</span>
                 </a>
             </nav>
@@ -43,7 +51,7 @@
                         <form class="mt-0 mx-3 inline-form d-md-block collapse">
                             <div class="input-group">
                                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                             </div>
                         </form>
                     </div>
