@@ -22,7 +22,9 @@ namespace ItemEyes.Controllers
         // GET: Items
         public async Task<IActionResult> Index()
         {
-            var itemContext = _context.Items.Include(i => i.Location);
+            var itemContext = _context.Items
+                .Include(i => i.Location)
+                .OrderByDescending(i => i.ReceivedOn);
             return View(await itemContext.ToListAsync());
         }
 
@@ -65,7 +67,6 @@ namespace ItemEyes.Controllers
         public IActionResult Create()
         {
             ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name");
-            ViewData["ProductId"] = new SelectList(_context.Items, "ProductId", "Name");
             return View();
         }
 
@@ -76,24 +77,7 @@ namespace ItemEyes.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Quantity,ReceivedOn,StorageZone,LocationId")] Item item)
         {
-
-            var items = await _context.Items
-                .Include(i => i.Location)
-                .OrderByDescending(i => i.ProductId)
-                .ToListAsync();
-
-            List<int> productIds = items.Select(i => i.ProductId).ToList();
-            List<string> names = items.Select(i => i.Name).ToList();
-
-            if(names.Contains(item.Name))
-            {
-                item.ProductId = items.Find(i => i.Name == item.Name).ProductId;
-            }
-            else
-            {
-                item.ProductId = items.First().ProductId + 1;
-            }
-
+            GenerateProductId(item);
             item.OrderCount = item.Quantity;
 
             if (ModelState.IsValid)
@@ -102,6 +86,7 @@ namespace ItemEyes.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name", item.LocationId);
             return View(item);
         }
 
@@ -127,18 +112,23 @@ namespace ItemEyes.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ProductId,Name,Quantity,OrderCount,ReceivedOn,StorageZone,LocationId")] Item item)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Quantity,OrderCount,ReceivedOn,StorageZone,LocationId")] Item item)
         {
             if (id != item.Id)
             {
                 return NotFound();
             }
 
+            GenerateProductId(item);
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(item);
+                    var existing = await _context.Items
+                        .Include(i => i.Location)
+                        .FirstOrDefaultAsync(m => m.Id == item.Id);
+                    _context.Entry(existing).CurrentValues.SetValues(item);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -191,6 +181,27 @@ namespace ItemEyes.Controllers
         private bool ItemExists(int id)
         {
             return _context.Items.Any(e => e.Id == id);
+        }
+
+        private async void GenerateProductId(Item item)
+        {
+
+
+            var items = await _context.Items
+                .Include(i => i.Location)
+                .OrderByDescending(i => i.ProductId)
+                .ToListAsync();
+
+            List<string> names = items.Select(i => i.Name).ToList();
+
+            if (names.Contains(item.Name))
+            {
+                item.ProductId = items.Find(i => i.Name == item.Name).ProductId;
+            }
+            else
+            {
+                item.ProductId = items.First().ProductId + 1;
+            }
         }
     }
 }

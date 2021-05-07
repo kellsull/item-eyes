@@ -220,7 +220,7 @@ namespace ItemEyes.Controllers
             {
                 string term = HttpContext.Request.Query["term"].ToString();
                 var items = await _context.Items.ToListAsync();
-                var names = items.Where(i => i.Name.Contains(term)).Select(i => i.Name).ToList();
+                var names = items.Where(i => i.Name.Contains(term)).Select(i => i.Name).Distinct().ToList();
                 return Ok(names);
             }
             catch
