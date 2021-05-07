@@ -114,7 +114,7 @@ URI's for the various actions required.
 
 ## Future Considerations
 Plans for this project include adding more documentation so it better serves as a sample project.
-Also adding functionality via controllers and adding new and expanding existing models.
+Also adding functionality via controllers and adding new data models and/or expanding existing ones.
 
 There is a known issue which occurs during operation with EF core, where
 performing actions immediately (or a short time) after previous actions can cause threading issues.
