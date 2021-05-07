@@ -114,5 +114,9 @@ URI's for the various actions required.
 
 ## Future Considerations
 Plans for this project include adding more documentation so it better serves as a sample project.
-
 Also adding functionality via controllers and adding new and expanding existing models.
+
+There is a known issue which occurs during operation with EF core, where
+performing actions immediately (or a short time) after previous actions can cause threading issues.
+This can be addressed by utilizing DbContextFactory to create seperate context threads for these
+actions. This would also be a potential addition to this project.
