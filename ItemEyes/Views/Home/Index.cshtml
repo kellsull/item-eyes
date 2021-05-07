@@ -54,6 +54,7 @@
             type: 'pie',
             data: pieChartData,
             options: {
+                aspectRatio: 1
             }
         };
         var pie = document.getElementById('stockPie').getContext('2d');
@@ -82,6 +83,7 @@
             type: 'bar',
             data: barChartData,
             options: {
+                aspectRatio: 1
             }
         }
         var bar = document.getElementById('stockBar').getContext('2d');
@@ -99,13 +101,13 @@
 <h2 class="display-4 border-bottom text-center mt-4">Overview</h2>
 <div class="container d-flex flex-column">
     <div class="card mx-auto mb-4" style="width:80%;">
-        <div class="card-body mx-auto" style="width: 25rem; height: 25rem">
+        <div class="card-body mx-auto">
             <h4 class="card-title text-center">Item Records Per Location</h4>
             <canvas class="chart m-4" id="stockPie" aria-label="stockPie" role="img"></canvas>
         </div>
     </div>
     <div class="card mx-auto mb-4" style="width:80%;">
-        <div class="card-body mx-auto" style="width: 25rem; height: 25rem">
+        <div class="card-body mx-auto">
             <h4 class="card-title text-center">Item Records Over Last 6 Months</h4>
             <canvas class="chart m-4" id="stockBar" aria-label="stockBar" role="img"></canvas>
         </div>
