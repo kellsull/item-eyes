@@ -39,7 +39,7 @@ This left me with two tables:
 - Items
 - Locations
 
-![EFCore](https://user-images.githubusercontent.com/27789610/116793836-cc06ae80-aa8e-11eb-9d49-1f6528de6310.png)
+![EFCore](https://github.com/kellivan/ItemEyes/blob/main/screenshots/index.png)
 
 I was tempted at this point to consider whether or not the location data should just be
 merged into the Items table as 2 to 3 more columns.  But I found that this would lead to
