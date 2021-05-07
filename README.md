@@ -9,7 +9,7 @@ ASP.NET Core project for inventory management
 - [API](#rest-api)
 - [Future Considerations](#future-considerations)
 
-![index](https://user-images.githubusercontent.com/27789610/117494666-44131f80-af3a-11eb-9784-eeef025e66b3.png)
+![index](https://github.com/kellivan/ItemEyes/blob/main/screenshots/index.png)
 
 ## Description
 This is a simple ASP.NET project created following Microsoft Documentaion site
