@@ -87,16 +87,16 @@ implement order storage input and output, as well as provide multiple query opti
 The .NET Template for Web API is preconfigured to use Swagger UI to demo builds. It looks like
 this:
 
-![Swagger1](https://user-images.githubusercontent.com/27789610/116793732-1b98aa80-aa8e-11eb-834b-88738df76c48.png)
+![Swagger1](https://github.com/kellivan/ItemEyes/blob/main/screenshots/api.png)
 
 And this is how you can sandbox actions using the page:
 
-![Swagger2](https://user-images.githubusercontent.com/27789610/116793733-1dfb0480-aa8e-11eb-9346-e6effa1a8024.png)
+![Swagger2](https://github.com/kellivan/ItemEyes/blob/main/screenshots/api-get.png)
 
 
 Of course, you can call the api directly from the browser:
 
-![api](https://user-images.githubusercontent.com/27789610/116793565-17b85880-aa8d-11eb-96f7-b2517f29f388.gif)
+![api](https://github.com/kellivan/ItemEyes/blob/main/screenshots/api.gif)
 
 ### Scaffolding Controllers
 Once setting up the database portion was complete, the next step was to create the controllers
