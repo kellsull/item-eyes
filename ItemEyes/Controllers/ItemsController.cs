@@ -65,6 +65,7 @@ namespace ItemEyes.Controllers
         public IActionResult Create()
         {
             ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name");
+            ViewData["ProductId"] = new SelectList(_context.Items, "ProductId", "Name");
             return View();
         }
 
@@ -73,15 +74,34 @@ namespace ItemEyes.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ProductId,Name,Quantity,OrderCount,ReceivedOn,StorageZone,LocationId")] Item item)
+        public async Task<IActionResult> Create([Bind("Id,Name,Quantity,ReceivedOn,StorageZone,LocationId")] Item item)
         {
+
+            var items = await _context.Items
+                .Include(i => i.Location)
+                .OrderByDescending(i => i.ProductId)
+                .ToListAsync();
+
+            List<int> productIds = items.Select(i => i.ProductId).ToList();
+            List<string> names = items.Select(i => i.Name).ToList();
+
+            if(names.Contains(item.Name))
+            {
+                item.ProductId = items.Find(i => i.Name == item.Name).ProductId;
+            }
+            else
+            {
+                item.ProductId = items.First().ProductId + 1;
+            }
+
+            item.OrderCount = item.Quantity;
+
             if (ModelState.IsValid)
             {
                 _context.Add(item);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name", item.LocationId);
             return View(item);
         }
 

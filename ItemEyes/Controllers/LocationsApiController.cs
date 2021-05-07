@@ -8,15 +8,15 @@ using Microsoft.EntityFrameworkCore;
 using ItemEyes.Data;
 using ItemEyes.Models;
 
-namespace ItemEyes.Areas.api.Controllers
+namespace ItemEyes.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Locations")]
     [ApiController]
-    public class LocationsController : ControllerBase
+    public class LocationsApiController : ControllerBase
     {
         private readonly ItemContext _context;
 
-        public LocationsController(ItemContext context)
+        public LocationsApiController(ItemContext context)
         {
             _context = context;
         }

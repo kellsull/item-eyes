@@ -9,15 +9,15 @@ using ItemEyes.Data;
 using ItemEyes.Models;
 using Microsoft.AspNetCore.Routing;
 
-namespace ItemEyes.Areas.api.Controllers
+namespace ItemEyes.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Items")]
     [ApiController]
-    public class ItemsController : ControllerBase
+    public class ItemsApiController : ControllerBase
     {
         private readonly ItemContext _context;
 
-        public ItemsController(ItemContext context)
+        public ItemsApiController(ItemContext context)
         {
             _context = context;
         }
@@ -211,5 +211,23 @@ namespace ItemEyes.Areas.api.Controllers
         {
             return _context.Items.Any(e => e.Id == id);
         }
+
+        [Produces("application/json")]
+        [HttpGet("Search/Name")]
+        public async Task<IActionResult> SearchName()
+        {
+            try
+            {
+                string term = HttpContext.Request.Query["term"].ToString();
+                var items = await _context.Items.ToListAsync();
+                var names = items.Where(i => i.Name.Contains(term)).Select(i => i.Name).ToList();
+                return Ok(names);
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
     }
 }
