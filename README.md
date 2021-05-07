@@ -3,10 +3,15 @@ ASP.NET Core project for inventory management
 
 ## Contents
 [Description](#description)
+
 [Models](#models)
+
 [Configuring EF Core](#configuring-ef-core)
+
 [Controllers / Views](#controllersviews)
+
 [API](#rest-api)
+
 [Future Considerations](#future-considerations)
 
 ## Description
