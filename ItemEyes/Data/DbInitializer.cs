@@ -54,9 +54,9 @@ namespace ItemEyes.Data
                 new Item { ProductId=7, Name="#12 Black Solid CU THHN - 500 ft.", OrderCount=50, Quantity=5,  ReceivedOn=DateTime.Parse("06-30-2020"), StorageZone="E7", LocationId=1 },
                 new Item { ProductId=8, Name="#12 Blue Solid CU THHN - 500 ft.", OrderCount=50, Quantity=10,  ReceivedOn=DateTime.Parse("06-30-2020"), StorageZone="E8", LocationId=1 },
                 new Item { ProductId=9, Name="#12 White Solid CU THHN - 500 ft.", OrderCount=200, Quantity=75, ReceivedOn=DateTime.Parse("06-30-2020"), StorageZone="E9", LocationId=1 },
-                new Item { ProductId=16, Name="8 ft. Fiberglass Ladder - 300lbs LC", OrderCount=25, Quantity=10, ReceivedOn=DateTime.Parse("05-30-2020"), StorageZone="", LocationId=2 },
-                new Item { ProductId=17, Name="Milwaukee M18 Hammer Drill/Drill", OrderCount=25, Quantity=5, ReceivedOn=DateTime.Parse("05-30-2020"), StorageZone="", LocationId=2 },
-                new Item { ProductId=18, Name="Milwaukee 1000V Non-Contact Voltage Detector", OrderCount=25, Quantity=10, ReceivedOn=DateTime.Parse("05-30-2020"), StorageZone="", LocationId=2 },
+                new Item { ProductId=16, Name="8 ft. Fiberglass Ladder - 300lbs LC", OrderCount=25, Quantity=10, ReceivedOn=DateTime.Parse("03-30-2021"), StorageZone="", LocationId=2 },
+                new Item { ProductId=17, Name="Milwaukee M18 Hammer Drill/Drill", OrderCount=25, Quantity=5, ReceivedOn=DateTime.Parse("03-30-2021"), StorageZone="", LocationId=2 },
+                new Item { ProductId=18, Name="Milwaukee 1000V Non-Contact Voltage Detector", OrderCount=25, Quantity=10, ReceivedOn=DateTime.Parse("03-30-2021"), StorageZone="", LocationId=2 },
 
             };
             foreach (Item i in items)

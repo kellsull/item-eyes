@@ -21,6 +21,9 @@ main, body, main, main > div {
         flex-direction: column;
     }
 }
+
+.card-chart{
+}
  
 .sidebar {
 position: fixed;

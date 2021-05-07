@@ -27,6 +27,25 @@ namespace ItemEyes.Controllers
             var locations = await _context.Locations
                 .Include(l => l.Items)
                 .ToListAsync();
+            locations.ForEach(l => l.Items = l.Items.OrderByDescending(i => i.ReceivedOn).ToList());
+            List<List<int>> monthlyTotals = new List<List<int>>();
+            foreach(Location location in locations)
+            {
+                IEnumerable<Item> items = location.Items.Where(i => (DateTime.Now >= i.ReceivedOn) && (i.ReceivedOn >= DateTime.Now.AddMonths(-5)));
+                var localTotals = new List<int>();
+                for (var i = -5; i <= 0; i++)
+                {
+                    var sum = 0;
+                    foreach (var item in items)
+                    {
+                        if (item.ReceivedOn.Month == DateTime.Now.AddMonths(i).Month)
+                            sum += 1;
+                    }
+                    localTotals.Add(sum);
+                }
+                monthlyTotals.Add(localTotals);
+            }
+            ViewData["monthlyTotals"] = monthlyTotals;
             return View(locations);
         }
 
