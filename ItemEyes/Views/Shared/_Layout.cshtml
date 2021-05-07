@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - ItemEyes</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/import.css" />
+    @RenderSection("head", false) @* Allows Views to have their own dependency injections *@
     <style>
         .sidebar-link{
             margin: 1rem;
@@ -66,20 +67,22 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Logout</a>
                         </div>
+                    </div>
                 </div>
-            </div>
         </header>
     </header>
     <main style="margin-top: 58px">
+        <div class="container">
+            @RenderBody()
+        </div>
+        <footer class="border-top footer text-muted">
             <div class="container">
-                @RenderBody()
+                &copy; 2021 - ItemEyes - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
             </div>
-            <footer class="border-top footer text-muted">
-                <div class="container">
-                    &copy; 2021 - ItemEyes - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                </div>
-            </footer>
+        </footer>
     </main>
+
+    @RenderSection("js", false) @* Allows Views to have their own dependency injections *@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

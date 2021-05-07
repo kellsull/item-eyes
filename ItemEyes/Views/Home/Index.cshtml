@@ -1,8 +1,82 @@
-﻿@{
+﻿@model IEnumerable<ItemEyes.Models.Location>
+@{
     ViewData["Title"] = "Home Page";
+    List<string> colors = new List<string>();
+    colors.AddRange(new string[] { "red", "purple", "fuschia", "green", "lime", "olive", "yellow", "navy", "blue, 'teal", "aqua", "orange" });
+
+}
+
+@section js
+{
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.1/dist/chart.min.js"></script>
+    <script type="text/javascript">
+        var chartLabels = [];
+        var chartData = [];
+        var chartColors = [];
+        @foreach(var item in Model)
+        {
+            @:chartLabels.push("@item.Name");
+            @:chartData.push(@item.Items.Count());
+            @:chartColors.push("@colors[0]");
+            colors.RemoveAt(0);
+        }
+        var data = {
+            labels: chartLabels,
+            datasets: [{
+                axis: 'y',
+                label: "Data",
+                data: chartData,
+                fill: false,
+                backgroundColor: chartColors,
+            }]
+        }
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                indexAxis: 'y',
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                }
+            }
+        }
+        var barchart = document.getElementById('stockBar').getContext('2d');
+        var chart = new Chart(barchart, config)
+    </script>
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    <h1 class="display-3">Welcome</h1>
+    <h3>@DateTime.Now.ToString("D")</h3>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<h2 class="display-4 border-bottom text-center">Overview</h2>
+<div class="container d-flex flex-column">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title text-center">Item Records Per Location</h5>
+            <canvas class="m-4 h-25" id="stockBar" aria-label="stockBar" role="img"></canvas>
+        </div>
+    </div>
+</div>
+
+<h2 class="display-4 border-bottom text-center">Locations</h2>
+<div class="container d-flex flex-card">
+    @foreach (var item in Model)
+    {
+        <div class="card mx-auto mb-4" style="width: 18rem;">
+            <img src="~/media/random1.png" class="card-img-top" alt="G Maps API Placeholder">
+            <div class="card-body">
+                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.Contact)</h6>
+                <p class="card-text">@Html.DisplayFor(modelItem => item.Address)</p>
+                <a class="card-link" asp-controller="Locations" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                <a class="card-link" asp-controller="Items" asp-action="Inventory" asp-route-id="@item.Id">Inventory</a>
+            </div>
+        </div>
+    }
+</div>
+

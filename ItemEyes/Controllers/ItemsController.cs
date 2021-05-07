@@ -45,6 +45,22 @@ namespace ItemEyes.Controllers
             return View(item);
         }
 
+        // GET: Items/Inventory/5
+        public async Task<IActionResult> Inventory(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var item = await _context.Items
+                .Where(i => i.LocationId == id)
+                .Include(i => i.Location)
+                .ToListAsync();
+
+            return View(item);
+        }
+
         // GET: Items/Create
         public IActionResult Create()
         {

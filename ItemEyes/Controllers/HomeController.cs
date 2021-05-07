@@ -24,10 +24,10 @@ namespace ItemEyes.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var locationContext = await _context.Locations
+            var locations = await _context.Locations
                 .Include(l => l.Items)
                 .ToListAsync();
-            return View();
+            return View(locations);
         }
 
         public IActionResult Privacy()
