@@ -49,7 +49,7 @@ decided to stop worrying about the data models and move on to the next phase.
 ## Configuring EF Core
 After creating the class files for the data models, I went about setting up my project for
 EF Core.  This step includes installing the NuGet packages for EF Core, setting up the project files
-to use a database (Sql Server Express LocalDb was used here), and creating a class for the
+to use a database (EF Core InMemory database was used here), and creating a class for the
 Entity Framework Database Context.  In addition, since this is a demo project, it was necessary to
 supply demo data.  This was accomplished by creating an EF DbInitializer class.
 
@@ -112,9 +112,31 @@ this, with additional controllers or estabilishing routes in the startup file, b
 easiest and preferred way was simply use the Routing Bracket Syntax to specify unique
 URI's for the various actions required.
 
+## Identity
+After everything else has been setup, a recent addition to the project was user account
+authorization and authentication.  Microsoft provides this in ASP.NET with Identity, 
+allowing us to scaffold in new pages for logging in, registration, logging out, etc...
+
+For this first step, I restructured the scaffolded Identity Area to use MVC, since the
+scoffolded item used Razor Pages by default.  This was to match the current structure
+of the project.  I then did basic setup for the user database, which wasn't too different
+from the Item databse setup.  I supplied it with an initial account, and setup a login page.
+
+After that, the controllers were modified to require Authorization where necessary and
+a special middleware class was added to do the same for the SwaggerUI page.
+
 ## Future Considerations
 Plans for this project include adding more documentation so it better serves as a sample project.
 Also adding functionality via controllers and adding new data models and/or expanding existing ones.
+
+Further development of the Identity portion of the project is another possibility, as there
+are many options that can be implemented.  Currently only logging in has been setup, and registration
+would be the next step to add new users.  More complex options would be to allow for third-party
+service assisted signup (linking an account with google, facebook, etc.). 
+
+With the addition of accounts, the possibility of variable data access could be worth considering as
+well.  This would allow to different types of accounts and different levels of functional actions
+for each.
 
 There is a known issue which occurs during operation with EF core, where
 performing actions immediately (or a short time) after previous actions can cause threading issues.
