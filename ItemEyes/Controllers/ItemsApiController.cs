@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ItemEyes.Data;
 using ItemEyes.Models;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ItemEyes.Controllers
 {
@@ -23,6 +24,7 @@ namespace ItemEyes.Controllers
         }
 
         // GET: api/Items
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Item>>> GetItems()
         {
@@ -34,6 +36,7 @@ namespace ItemEyes.Controllers
         }
 
         // GET: api/Items/ProductId/productId
+        [Authorize]
         [HttpGet("ProductId/{productId}")]
         public async Task<ActionResult<IEnumerable<Item>>> GetItemsByProductId(int productId)
         {
@@ -46,6 +49,7 @@ namespace ItemEyes.Controllers
         }
 
         // GET: api/Items/Name/name
+        [Authorize]
         [HttpGet("Name/{name}")]
         public async Task<ActionResult<IEnumerable<Item>>> GetItemsByName(string name)
         {
@@ -58,6 +62,7 @@ namespace ItemEyes.Controllers
         }
 
         // GET: api/Items/Location/locationId
+        [Authorize]
         [HttpGet("Location/{locationId}")]
         public async Task<ActionResult<IEnumerable<Item>>> GetItemsByLocation(int locationId)
         {
@@ -70,6 +75,7 @@ namespace ItemEyes.Controllers
         }
 
         // GET: api/Items/5
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<Item>> GetItem(int id)
         {
@@ -88,6 +94,7 @@ namespace ItemEyes.Controllers
 
         // POST: api/Items
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Item>> PostItem(Item item)
         {
@@ -102,6 +109,7 @@ namespace ItemEyes.Controllers
         // Records new items taken into inventory, should only be used items with the same location
         // POST: api/Items/locationId/Receive
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize]
         [HttpPost("Receive/{locationId}")]
         public async Task<ActionResult<IEnumerable<Item>>> PostReceivedItems(int locationId, IEnumerable<Item> items)
         {
@@ -121,6 +129,7 @@ namespace ItemEyes.Controllers
         // I've set it up to do FIFO for now.
         // This doesn't actually make the updates for sent items, it only returns their info
         // Get: api/Items/productId/quantity
+        [Authorize]
         [HttpGet("{productId}/{quantity}")]
         public async Task<ActionResult<IEnumerable<Item>>> GetItemsToSend(int productId, int quantity )
         {
@@ -160,6 +169,7 @@ namespace ItemEyes.Controllers
 
         // This method decrements the stock quantity of an item by the quantity given to be sent
         // Get: api/Items/id/quantity/Send
+        [Authorize]
         [HttpGet("Send/{id}/{quantity}")]
         public async Task<ActionResult<IEnumerable<Item>>> SendItems(int id, int quantity)
         {
@@ -192,6 +202,7 @@ namespace ItemEyes.Controllers
         // Under the design model of this project, Delete should only be used when an items quantity decrements to zero
         // and would rarely if ever be called manually
         // DELETE: api/Items/5
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteItem(int id)
         {

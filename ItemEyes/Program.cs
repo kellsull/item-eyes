@@ -1,4 +1,5 @@
 using ItemEyes.Data;
+using ItemEyes.Areas.Identity.Data;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -31,6 +32,7 @@ namespace ItemEyes
                 {
                     var context = services.GetRequiredService<ItemContext>();
                     DbInitializer.Initialize(context);
+                    UserDbInitializer.Initialize(services);
                 }
                 catch (Exception ex)
                 {

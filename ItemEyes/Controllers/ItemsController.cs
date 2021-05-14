@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ItemEyes.Data;
 using ItemEyes.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ItemEyes.Controllers
 {
@@ -20,6 +21,7 @@ namespace ItemEyes.Controllers
         }
 
         // GET: Items
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var itemContext = _context.Items
@@ -29,6 +31,7 @@ namespace ItemEyes.Controllers
         }
 
         // GET: Items/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -48,6 +51,7 @@ namespace ItemEyes.Controllers
         }
 
         // GET: Items/Inventory/5
+        [Authorize]
         public async Task<IActionResult> Inventory(int? id)
         {
             if (id == null)
@@ -64,6 +68,7 @@ namespace ItemEyes.Controllers
         }
 
         // GET: Items/Create
+        [Authorize]
         public IActionResult Create()
         {
             ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Name");
@@ -73,6 +78,7 @@ namespace ItemEyes.Controllers
         // POST: Items/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Quantity,ReceivedOn,StorageZone,LocationId")] Item item)
@@ -91,6 +97,7 @@ namespace ItemEyes.Controllers
         }
 
         // GET: Items/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -110,6 +117,7 @@ namespace ItemEyes.Controllers
         // POST: Items/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Quantity,OrderCount,ReceivedOn,StorageZone,LocationId")] Item item)
@@ -149,6 +157,7 @@ namespace ItemEyes.Controllers
         }
 
         // GET: Items/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -168,6 +177,7 @@ namespace ItemEyes.Controllers
         }
 
         // POST: Items/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

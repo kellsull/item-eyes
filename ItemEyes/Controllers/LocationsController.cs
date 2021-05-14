@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ItemEyes.Data;
 using ItemEyes.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ItemEyes.Controllers
 {
@@ -20,12 +21,14 @@ namespace ItemEyes.Controllers
         }
 
         // GET: Locations
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Locations.ToListAsync());
         }
 
         // GET: Locations/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,6 +47,7 @@ namespace ItemEyes.Controllers
         }
 
         // GET: Locations/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -52,6 +56,7 @@ namespace ItemEyes.Controllers
         // POST: Locations/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Address,Contact")] Location location)
@@ -66,6 +71,7 @@ namespace ItemEyes.Controllers
         }
 
         // GET: Locations/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -84,6 +90,7 @@ namespace ItemEyes.Controllers
         // POST: Locations/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Address,Contact")] Location location)
@@ -117,6 +124,7 @@ namespace ItemEyes.Controllers
         }
 
         // GET: Locations/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,6 +143,7 @@ namespace ItemEyes.Controllers
         }
 
         // POST: Locations/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -11,6 +11,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Identity;
+using ItemEyes.Areas.Identity.Data;
+using ItemEyes.Areas.Identity.Models;
 
 namespace ItemEyes
 {
@@ -27,7 +30,7 @@ namespace ItemEyes
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ItemContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseInMemoryDatabase("ItemDB"));
 
             services.AddControllers();
             services.AddControllersWithViews();
@@ -35,20 +38,50 @@ namespace ItemEyes
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ItemEyes", Version = "v1" });
             });
+
+            services.AddIdentityCore<ItemEyesUser>()
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<ItemEyesDbContext>()
+                .AddSignInManager()
+                .AddDefaultTokenProviders();
+
+            services.AddAuthentication(o =>
+            {
+                o.DefaultScheme = IdentityConstants.ApplicationScheme;
+                o.DefaultSignInScheme = IdentityConstants.ExternalScheme;
+            })
+            .AddIdentityCookies(o => { });
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Identity/Accounts/Login";
+                options.LogoutPath = "/Identity/Accounts/Logout";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+
+            app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+            
+                app.UseSwaggerAuthorized();
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
                 {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "ItemEyes v1");
                     c.RoutePrefix = "api";
                 });
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
             }
             else
             {
@@ -56,15 +89,12 @@ namespace ItemEyes
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
-            app.UseRouting();
-
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "MyArea",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

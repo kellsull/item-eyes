@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ItemEyes.Data;
 using ItemEyes.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ItemEyes.Controllers
 {
@@ -49,6 +50,7 @@ namespace ItemEyes.Controllers
             return View(locations);
         }
 
+        [Authorize]
         public IActionResult Privacy()
         {
             return View();

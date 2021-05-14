@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ItemEyes.Data;
 using ItemEyes.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ItemEyes.Controllers
 {
@@ -22,6 +23,7 @@ namespace ItemEyes.Controllers
         }
 
         // GET: api/Locations
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Location>>> GetLocations()
         {
@@ -33,6 +35,7 @@ namespace ItemEyes.Controllers
         }
 
         // GET: api/Locations/5
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<Location>> GetLocation(int id)
         {
@@ -48,6 +51,7 @@ namespace ItemEyes.Controllers
 
         // POST: api/Locations
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Location>> PostLocation(Location location)
         {
@@ -58,6 +62,7 @@ namespace ItemEyes.Controllers
         }
 
         // DELETE: api/Locations/5
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteLocation(int id)
         {
