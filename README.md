@@ -1,4 +1,4 @@
-# ItemEyes
+# item-eyes
 .NET Core Web API for inventory management
 
 ## Scope
