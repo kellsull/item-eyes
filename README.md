@@ -1,4 +1,4 @@
-# ItemEyes
+# item-eyes
 ASP.NET Core project for inventory management
 
 ## Contents
