@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemEyes", "ItemEyes\ItemEyes.csproj", "{329E5A93-136A-45DD-8EFB-42515B8687F9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{329E5A93-136A-45DD-8EFB-42515B8687F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{329E5A93-136A-45DD-8EFB-42515B8687F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{329E5A93-136A-45DD-8EFB-42515B8687F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{329E5A93-136A-45DD-8EFB-42515B8687F9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {89067D7C-35E1-45DF-8447-4F686F6D39F6}
+	EndGlobalSection
+EndGlobal
